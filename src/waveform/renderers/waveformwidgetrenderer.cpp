@@ -121,9 +121,10 @@ void WaveformWidgetRenderer::onPreRender(VSyncThread* vsyncThread) {
     // Allow waveform to spread one visual sample across a hundred pixels
     // NOTE: The hundred pixel limit is totally arbitrary. Theoretically,
     // there should be no limit to how far the waveforms can be zoomed in.
-    double visualSamplePerPixel = m_zoomFactor * m_rateRatio / m_scaleFactor;
+    // HERE: (added *2)
+    double visualSamplePerPixel = m_zoomFactor * m_rateRatio / m_scaleFactor * 2;
     m_visualSamplePerPixel = math_max(0.01, visualSamplePerPixel);
-
+    // END
     TrackPointer pTrack = m_pTrack;
     if (pTrack) {
         ConstWaveformPointer pWaveform = pTrack->getWaveform();
